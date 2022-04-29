@@ -6,27 +6,33 @@
   <meta name="viewport" content="width=device-width">
   <title>Game of Life</title>
   <link href="css/style.css" rel="stylesheet" type="text/css" />
+  <link href="css/buttons.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
 
 	<header>
-		<h1 class="title"><small>Jon Conway's</small><br/>Game of Life</title>
+		<div class="header">
+			<h1 class="title"><small>Jon Conway's</small><br/>Game of Life</title>
+		</div>
 	</header>
 
-	<div id="generation-label">[[Generation]]</div>
-	<table>
-		<tbody id="gameboard">			
-		</tbody>
-	</table>
-
-	<controls>
-		<button id="runbutton" onclick="toogleRunning()">#run-button</button>		
-		<button id="clearbutton" onclick="clearBoard()")>Board zurücksetzen</button>		
-		<button id="nextbutton" onclick="nextGeneration()")>Nächste Generation</button>	
-	</controls>
+	<div class="container">
+		<div class="left">
+			<table>
+				<tbody id="gameboard">			
+				</tbody>
+			</table>
+		</div>
+		<div class="right">
+			<div id="generation-label">[[Generation]]</div>
+			<div><button id="runbutton" class="glow-on-hover" onclick="toogleRunning()">#run-button</button></div>		
+			<div><button id="clearbutton" class="glow-on-hover" onclick="clearBoard()")>Board zurücksetzen</button></div>		
+			<div><button id="nextbutton" class="glow-on-hover" onclick="nextGeneration()")>Nächste Generation</button></div>	
+		</div>
+	</div>
 	
-  <script src="js/script.js"></script>
+	<script src="js/script.js"></script>
 
 </body>
 
