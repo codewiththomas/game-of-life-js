@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Game of Life</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+	<header>
+		<h1 class="title"><small>Jon Conway's</small><br/>Game of Life</title>
+	</header>
+
+	<div id="generation-label">[[Generation]]</div>
+	<table>
+		<tbody id="gameboard">			
+		</tbody>
+	</table>
+
+	<controls>
+		<button id="runbutton" onclick="toogleRunning()">#run-button</button>		
+		<button id="clearbutton" onclick="clearBoard()")>Board zurücksetzen</button>		
+		<button id="nextbutton" onclick="nextGeneration()")>Nächste Generation</button>	
+	</controls>
+	
+  <script src="script.js"></script>
+
+</body>
+
+</html>
