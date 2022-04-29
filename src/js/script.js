@@ -11,12 +11,6 @@ let generation = 1;
 const aliveClass = 'alive';
 
 
-
-
-
-
-
-
 /** Berechnet den BoardState für die nächste Generation, erhöht den 
  *  Generationszähler um eins und zeichnet das Board neu.
  */
@@ -38,9 +32,9 @@ function nextGeneration() {
 		}
 	}
 		
-  board = deepCloneArray(nextGenerationBoard);
-  generation++;
-  drawBoard();	
+	board = deepCloneArray(nextGenerationBoard);
+	generation++;
+	drawBoard();	
 }
 
 
@@ -128,9 +122,6 @@ function getBoardTileId(row, col) {
  *  Spielfeld.
  */
 function init() {
-	
-	//let xBoardCenter = Math.round(boardCols/2);
-	//let yBoardCenter = Math.round(boardRows/2);
 
 	tbody = document.getElementById("gameboard");
 
