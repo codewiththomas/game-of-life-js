@@ -14,19 +14,11 @@ const aliveClass = 'alive';
 
 
 
-/** Erstellt eine vollständige Kopie eines Arrays. Dabei werden 
- *  auch evtl. vorhandene Referenztypen von mehrdimensionalen Arrays
- *  kopiert. Die Standardfunktionen von JS erzeugen leider nur eine
- *  Shallow-Copy 
- *  @see: https://medium.com/@ziyoshams/deep-copying-javascript-arrays-4d5fc45a6e3e
- */
-function deepCloneArray(inputArray) {
-	return JSON.parse(JSON.stringify(inputArray))
-}
 
 
-/**
- *
+
+/** Berechnet den BoardState für die nächste Generation, erhöht den 
+ *  Generationszähler um eins und zeichnet das Board neu.
  */
 function nextGeneration() {
 
@@ -47,12 +39,14 @@ function nextGeneration() {
 	}
 		
   board = deepCloneArray(nextGenerationBoard);
-	generation++;
-	
-	drawBoard(true);	
+  generation++;
+  drawBoard();	
 }
 
 
+/** Aktualisiert die Anzeige der Kontrollelemente auf der Seite (u.a. welche
+ *  Buttons verfügbar sind).
+ */
 function drawControls()	{
 	let buttonText = (isRunning ? "Stoppen" : "Starten"); 
 	document.getElementById("runbutton").innerText = buttonText;	
@@ -61,26 +55,28 @@ function drawControls()	{
 }
 
 
-function drawBoard(isForcedReset = false)	{
-	if (isRunning || isForcedReset) {
-		
-		// Anzeige der Zellen
-		for (let row = 0; row < boardRows; row++) {
-			for (let col = 0; col < boardCols; col++) {
-				let boardTileId = getBoardTileId(row, col);
-				let boardTile = document.getElementById(boardTileId);
-				let isAlive = board[row][col];
-				if(isAlive && !hasClass(boardTile, aliveClass)) {
-     			boardTile.classList.add(aliveClass);
-  			} else if (!isAlive && hasClass(boardTile, aliveClass)) {
-					boardTile.classList.remove(aliveClass);
-				}
+/** Aktualisiert die Darstellung des Boards mit Hilfe des aktuellen BoardStates.
+ */
+function drawBoard() {
+	
+	// Anzeige der Zellen
+	for (let row = 0; row < boardRows; row++) {
+		for (let col = 0; col < boardCols; col++) {
+			let boardTileId = getBoardTileId(row, col);
+			let boardTile = document.getElementById(boardTileId);
+			let isAlive = board[row][col];
+			if(isAlive && !hasClass(boardTile, aliveClass)) {
+			boardTile.classList.add(aliveClass);
+		} else if (!isAlive && hasClass(boardTile, aliveClass)) {
+				boardTile.classList.remove(aliveClass);
 			}
-		}	
-		//Anzeige der Labels
-		document.getElementById('generation-label').innerText = generation + '. Generation';
-	}
+		}
+	}	
+	//Anzeige der Labels
+	document.getElementById('generation-label').innerText = generation + '. Generation';
+
 }
+
 
 /** Prüft, ob ein Element einer bestimmten Klasse angehört.
  *  @param element - HTML-Element
@@ -133,8 +129,8 @@ function getBoardTileId(row, col) {
  */
 function init() {
 	
-	let xBoardCenter = Math.round(boardCols/2);
-	let yBoardCenter = Math.round(boardRows/2);
+	//let xBoardCenter = Math.round(boardCols/2);
+	//let yBoardCenter = Math.round(boardRows/2);
 
 	tbody = document.getElementById("gameboard");
 
@@ -148,12 +144,11 @@ function init() {
 			boardTile.addEventListener('click', onCellClicked(row, col));
 			currentRow.appendChild(boardTile);
 			board[row][col] = false;
-		}
-		
+		}	
 	}
 	
 	drawControls();
-	drawBoard(true);
+	drawBoard();
 }
 init();
 
@@ -180,4 +175,15 @@ function countNeighbors(row, col) {
 		}
 	}	
 	return neighbors;
+}
+
+
+/** Erstellt eine vollständige Kopie eines Arrays. Dabei werden 
+ *  auch evtl. vorhandene Referenztypen von mehrdimensionalen Arrays
+ *  kopiert. Die Standardfunktionen von JS erzeugen leider nur eine
+ *  Shallow-Copy 
+ *  @see: https://medium.com/@ziyoshams/deep-copying-javascript-arrays-4d5fc45a6e3e
+ */
+ function deepCloneArray(inputArray) {
+	return JSON.parse(JSON.stringify(inputArray))
 }
