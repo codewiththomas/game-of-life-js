@@ -1,4 +1,4 @@
-let interval = 1000;
+let interval = 250;
 
 let board = []; //Array zum Speichern des BoardState
 let boardRows = 50;
@@ -147,7 +147,7 @@ setInterval(function() {
 	if (isRunning) {
 		nextGeneration();
 	}   
-}, 1000);
+}, interval);
 
 
 /* Zählt die Anzahl der lebenden Nachbarzellen einer Zelle.
