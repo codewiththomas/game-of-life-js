@@ -11,6 +11,4 @@ Ein aktueller Browser mit aktiviertem Javascript
 Dateien herunterladen und index.html in Browser öffnen
 
 ## Weitere Implementierungen
-
-## Weitere Implementierungen
 - [Game-of-Life in Python](https://github.com/codewiththomas/game-of-life-python)
